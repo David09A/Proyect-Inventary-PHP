@@ -45,23 +45,83 @@
 				</ul>
 			</nav>
 		</div><br>
+		<div class="search-place">
+			<form method="POST" action="list_prov.php" onSubmit="return validarForm(this)">
+    			<div class="buscador">
+					<input class="busqueda" type="text" placeholder="Buscar proveedor" name="palabra">
+    				<input class="botonbusq" type="submit" value="Buscar" name="buscar">
+				</div><br>
+    			<script type="text/javascript">
+   					function validarForm(formulario){
+        			if(formulario.palabra.value.length==0) 
+        			{ //¿Tiene 0 caracteres?
+            		formulario.palabra.focus();  // Damos el foco al control
+            		alert('Debes rellenar este campo'); //Mostramos el mensaje
+            		return false; 
+         			} //devolvemos el foco  
+         			return true; //Si ha llegado hasta aquí, es que todo es correcto 
+     				}   
+				</script>
+			</form>
+			<?php 
+					if(isset($_POST['buscar'])) 
+					{  
+					   ?>
+					   <!-- el resultado de la búsqueda lo encapsularemos en un tabla -->
+					   <table>
+					       <tr class="strong">
+						<th>Nit.</th>
+						<th>Nombre</th>
+						<th>Celular</th>
+						<th>Direccion</th>
+						<th>Correo</th>
+								<td colspan="2">Opciones</td>
+							</tr>
+					       <?php
+					       //obtenemos la información introducida anteriormente desde nuestro buscador PHP
+					       $buscar = $_POST["palabra"];
+					 
+					       $consulta_mysql= mysqli_query ($con, "SELECT * FROM gr002det_user WHERE (k_identi like '%$buscar%' or n_name like '%$buscar%') AND k_rol = 'PROV' LIMIT 5");
+					 
+					       while($registro = mysqli_fetch_assoc($consulta_mysql)) 
+					       {
+					           ?> 
+					           <tr>
+					               <!--mostramos el codigo y nombre de las tuplas que han coincidido con la 
+					               cadena insertada en nuestro formulario-->
+					              	<td><?php echo $registro['k_identi']; ?></td>
+									<td><?php echo $registro['n_name']; ?></td>
+									<td><?php echo $registro['v_phone']; ?></td>
+									<td><?php echo $registro['n_address']; ?></td>
+									<td><?php echo $registro['n_mail']; ?></td>
+									<td><a href="ACTUALIZAR/proveedors.php?prod=<?php echo $registro['k_identi']?>"><input type="button" name="Editar" value="Editar" class="boton_tablas"></a></td>
+									<td><a href="ELIMINAR/eliminarprod.php?prod=<?php echo $registro['k_identi']?>"><input type="button" name="eliminar" value="Eliminar" class="boton_tablas"></a></td>
+					           </tr>
+					           <?php 
+					       } //fin blucle
+					    ?>
+					    </table>
+    <?php
+}
+?>
+		</div>
 		<div class="products-list">
 			<div class="header">
-			<h1>Lista de Proveedores</h1>
-			<a href="../../Pdf/reporte_prov.PHP" target="_blank"><button class="generador">Generar PDF</button></a>
-			</div>
+			<h1>Proveedores</h1>
+			<a href="../../Pdf/reporte_proveedor.PHP" target="_blank"><button class="generador">Generar PDF</button></a>
+			</div>			
 			<table>
 				<tr class="strong">
-					<td>Nit</td>
-					<td>Nombre de la empresa</td>
-					<td>Telefono</td>
-					<td>Correo</td>
-					<td>Direccion</td>
+						<th>Nit.</th>
+						<th>Nombre</th>
+						<th>Celular</th>
+						<th>Direccion</th>
+						<th>Correo</th>
 					<td colspan="2">Opciones</td>
 				</tr>
 				<?php
 				
-				$query ="SELECT * from proveedor";
+				$query ="SELECT k_identi, n_name, v_phone, n_address, n_mail from gr002det_user WHERE k_rol = 'PROV' LIMIT 15";
 
 				$consulta=mysqli_query($con,$query);
 
@@ -70,17 +130,18 @@
 					
 				?>
 				<tr>
-					<td><?php echo $mostrar['nit']; ?></td>
-					<td><?php echo $mostrar['nom_empresa']; ?></td>
-					<td><?php echo $mostrar['telefono']; ?></td>
-					<td><?php echo $mostrar['correo']; ?></td>
-					<td><?php echo $mostrar['direccion']; ?></td>
-					<td><a href="ACTUALIZAR/proveedor.php?prov=<?php echo $mostrar['nit']?>"><input type="button" name="Editar" value="Editar" class="boton_tablas"></a></td>
-					<td><a href="ELIMINAR/eliminarprov.php?prov=<?php echo $mostrar['nit']?>"><input type="button" name="eliminar" value="Eliminar" class="boton_tablas"></a></td>
-				</tr>
+				<td><?php echo $mostrar['k_identi']; ?></td>
+				<td><?php echo $mostrar['n_name']; ?></td>
+				<td><?php echo $mostrar['v_phone']; ?></td>
+				<td><?php echo $mostrar['n_address']; ?></td>
+				<td><?php echo $mostrar['n_mail']; ?></td>
+				<td><a href="ACTUALIZAR/proveedors.php?prod=<?php echo $mostrar['k_identi']?>"><input type="button" name="Editar" value="Editar" class="boton_tablas"></a></td>
+				<td><a href="ELIMINAR/eliminarprod.php?prod=<?php echo $mostrar['k_identi']?>"><input type="button" name="eliminar" value="Eliminar" class="boton_tablas"></a></td>
+			</tr>
 				<?php 
 				}
 				 ?>
+				 
 			</table>
 		</div>
 	</center>

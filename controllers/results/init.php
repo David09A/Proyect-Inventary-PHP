@@ -52,9 +52,6 @@
 	<center>
 		<div class="ventas">
 			<a href="ventas.php" target="_blank"><button class="generador"><i class="fas fa-file-download"></i> Ventas del Sistema</button></a>
-			<?php 
-				include_once "cliente.php";
-			 ?>
 			<br>
 			<div class="vendedor">
 					<h2>Datos de la venta</h2>
@@ -98,18 +95,6 @@
 								<strong>Error: </strong>El producto está agotado
 							</div>
 						<?php
-					}else if($_GET["status"] === "6"){
-						?>
-						<div class="alertas">
-								<strong>Cliente:</strong> <?php echo $usuariocli['nomb_compl_cli']; ?>
-							</div>
-						<?php
-					}else if($_GET["status"] === "7"){
-						?>
-						<div class="alertas">
-								<strong>Error:</strong> Debe agregar un cliente
-							</div>
-						<?php
 					}else{
 						?>
 						<div class="alertas">
@@ -122,7 +107,7 @@
 			</div>
 			<br>
 			<div class="venta">
-				<form method="post" action="agregarAlCrarrito.php" class="buscador">
+				<form method="post" action="../peticions/addCart.php" class="buscador">
 					<label for="codigo">Código del Producto:</label>
 					<input autocomplete="off" autofocus class="busqueda" name="codigo" required type="text" id="codigo" placeholder="Escribe el código">
 					<input type="submit" value="Buscar" class="botonbusq">
@@ -131,19 +116,12 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th colspan="7">Cliente</th>
-						</tr>
-							<td colspan="7"><?php if (!$usuariocli) {
-								echo "<h3 class='clienteh2'>Para Generar una venta debe Agregar un cliente</h3>";
-							}else{
-								echo "<h3 class='clienteh2'>".$usuariocli['nomb_compl_cli']."</h3>";
-							} ?></td>
-						<tr>
-							<th>Código</th>
-							<th>Nombre</th>
-							<th>Precio de venta</th>
-							<th>Cantidad</th>
-							<th>Total</th>
+							<td>Ref</td>
+							<td>Nombre</td>
+							<td>Cantidad</td>
+							<td>Valor</td>
+							<td>Proveedor</td>
+							<td>Total</td>
 							<th>Opciones</th>
 						</tr>
 					</thead>
@@ -152,15 +130,16 @@
 								$granTotal += $producto->total;
 							?>
 						<tr>
-							<td><?php echo $producto->id ?></td>
-							<td><?php echo $producto->nombre ?></td>
-							<td><?php echo $producto->precio_venta ?></td>
+							<td><?php echo $producto->k_refprod ?></td>
+							<td><?php echo $producto->n_name_prod ?></td>
 							<td><?php echo $producto->caantidad ?></td>
+							<td><?php echo $producto->v_valor_prod ?></td>
+							<td><?php echo $producto->k_prov_prod ?></td>
 							<td><?php echo $producto->total ?></td>
 							<td>
-								<a class="boton_tablas" href="<?php echo "aumentarDelCarrito.php?indice=" . $indice?>"><i class="fas fa-plus" title="Añadir otra unidad"></i></a>
-								<a class="boton_tablas" href="<?php echo "restarDelCarrito.php?indice=" . $indice?>"><i class="fas fa-minus" title="Quitar una unidad"></i></a>
-								<a class="boton_tablas" href="<?php echo "quitarDelCarrito.php?indice=" . $indice?>"><i class="fas fa-trash-alt" title="Quitar el Producto de la lista"></i></a>
+								<a class="boton_tablas" href="<?php echo "../peticions/aumentarDelCarrito.php?indice=" . $indice?>"><i class="fas fa-plus" title="Añadir otra unidad"></i></a>
+								<a class="boton_tablas" href="<?php echo "../peticions/restarDelCarrito.php?indice=" . $indice?>"><i class="fas fa-minus" title="Quitar una unidad"></i></a>
+								<a class="boton_tablas" href="<?php echo "../peticions/quitarDelCarrito.php?indice=" . $indice?>"><i class="fas fa-trash-alt" title="Quitar el Producto de la lista"></i></a>
 							</td>
 						</tr>
 						<?php } ?>
@@ -169,17 +148,11 @@
 			</div>
 			<div class="total">
 				<h3>Total: <?php echo $granTotal; ?></h3>
-				<form action="<?php echo"./terminarVenta.php?clie=".$usuariocli['cedula'] ?>" method="POST">
-				<input name="total" type="hidden" value="<?php echo $granTotal;?>">
-				<?php 
-					if ($usuariocli) {?>
-						<button type="submit" class="boton_tablas">Terminar venta</button>
-						<?php
-					}
-				 ?>
-				
-				<a href="cancelarVenta.php" class="boton_tablas">Cancelar venta</a>
-			</form>
+				<form action="../peticions/terminarVenta.php" method="POST">
+					<input name="total" type="hidden" value="<?php echo $granTotal;?>">
+					<button type="submit" class="boton_tablas">Terminar venta</button>
+					<a href="../peticions/terminarVenta.php" class="boton_tablas">Cancelar venta</a>
+				</form>
 			</div>
 			
 		</div>

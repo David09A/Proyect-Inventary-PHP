@@ -1,7 +1,9 @@
 <?php 
 	require_once("../../../db/config.php");//Incluir la conexion
 	session_start();
-	error_reporting(E_ERROR | E_PARSE);
+	//error_reporting(E_ERROR | E_PARSE);
+	error_reporting(E_ALL);
+	ini_set('display_errors', '1');
 	$usuari = $_SESSION['user'];
 	$admin = $usuari['n_name'];
 
@@ -16,7 +18,6 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../../assets/styles.css">
 	<link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css">
 	<meta name="viewport" content="initial-scale=1">
 </head>
 <body>
@@ -49,81 +50,67 @@
 			<h2>Crear Admin</h2>
 			<form action="new_admin.php" method="POST">
 				<h3>Cedula:</h3>
-				<input type="text" name="num_cedula" class="entrada" placeholder="Ingrese Cedula" required>
+					<input type="text" name="k_identi" class="entrada" placeholder="Ingrese Cedula" required>
 				<br>
 				<h3>Nombre:</h3>
-				<input type="text" name="nombres" class="entrada" placeholder="Ingrese Nombre" required>
+				<input type="text" name="n_name" class="entrada" placeholder="Ingrese Nombre" required>
 				<br>
-				<h3>Apellidos:</h3>
-				<input type="text" name="apellidos" class="entrada" placeholder="Ingrese Apellidos" required>
+				<h3>Apellido:</h3>
+				<input type="text" name="n_lastname" class="entrada" placeholder="Ingrese Apellido" required>
 				<br>
-				<h3>Telefono:</h3>
-				<input type="text" name="telefono" class="entrada" placeholder="Ingrese Telefono" required minlength="9" maxlength="12">
-				<br>
-				<h3>Correo:</h3>
-				<input type="email" name="correo" class="entrada" placeholder="Ingrese Correo" required>
-				<br>
-				<h3>Contraseña:</h3>
-				<input type="password" name="contraseña" class="entrada" placeholder="Ingrese Contraseña" required>
+				<h3>Telefono o Celular:</h3>
+					<input type="number" name="v_phone" class="entrada" placeholder="Ingrese numero de contacto" required>
 				<br>
 				<h3>Direccion:</h3>
-				<input type="text" name="direccion" class="entrada" placeholder="Ingrese direccion" required>
+					<input type="text" name="n_address" class="entrada" placeholder="Ingrese Direccion"  required>
 				<br>
-				<h3>Areas de Supervicion:</h3>
-				<select name="areas_a_supervisar" class="seleccion">
-					<option value="Todas">Todas</option>
-					<option value="Ventas">Ventas</option>
-					<option value="General">General</option>
-					<option value="Otras">Otras</option>
-				</select>
+				<h3>Correo electronico:</h3>
+					<input type="email" name="n_mail" class="entrada" placeholder="Ingrese correo electronico" required>
 				<br>
-				<h3>Estado Civil:</h3>
-				<input type="text" name="estado_civil" class="entrada" placeholder="Ingrese estado Civil" required>
-				<br>
-				<h3>Tipo de Sangre:</h3>
-				<input type="text" name="RH" class="entrada" placeholder="Ingrese RH" required>
-				<br><br>
-				<input type="submit" value="Registrar" id="boton" name="insert"><br><br>
+					<input type="submit" value="Registrar" id="boton" name="insert"><br><br>
 			</form>
 
 	<?php
 		if(isset($_POST['insert'])){
-			$num_cedula = $_POST['num_cedula'];
-			$nombres = $_POST['nombres'];
-			$apellidos = $_POST['apellidos'];
-			$telefono = $_POST['telefono'];
-			$correo = $_POST['correo'];
-			$contraseña = $_POST['contraseña'];
-			$direccion = $_POST['direccion'];
-			$areas_a_supervisar = $_POST['areas_a_supervisar'];
-			$estado_civil = $_POST['estado_civil'];
-			$RH = $_POST['RH'];
+			$k_identi = $_POST['k_identi'];
+			$n_name = $_POST['n_name'];
+			$n_lastname = $_POST['n_lastname'];
+			$v_phone = $_POST['v_phone'];
+			$n_address = $_POST['n_address'];
+			$n_mail = $_POST['n_mail'];
+			$k_rol = 'ADM';
 
 	//insertar datos en la base de datos
-			$insertar = "INSERT INTO directivo (num_cedula, nombres, apellidos, telefono, correo, contraseña, direccion, areas_a_supervisar, estado_civil, RH, quien_registra) VALUES ('$num_cedula', '$nombres', '$apellidos', '$telefono', '$correo', '$contraseña', '$direccion', '$areas_a_supervisar', '$estado_civil', '$RH', '$usuario');";
+			$insertar = "INSERT INTO gr002det_user (k_identi, n_name, n_lastname, v_phone, n_address, n_mail, k_rol) values 
+			('$k_identi', '$n_name', '$n_lastname', '$v_phone', '$n_address', '$n_mail', '$k_rol')";
 
-			$ejecutar = mysqli_query($con,$insertar);
+			$ejecutar = mysqli_query($con, $insertar);
 			if($ejecutar){
 				echo "<h3>Insertado Correctamente</h3>";
 			?>
+		</div>
 				<!--creamos una tabla-->
-				<br/></div>
+				<br/>
 				<br/>
 				<center>
 				<h3>Datos Ingresados</h3>
 				
 					<table>
+					<tr>
+						<th>Nit.</th>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Celular</th>
+						<th>Direccion</th>
+						<th>Correo</th>
+					</tr>
 					<tr align="center">
-						<td><?php echo $num_cedula;?></td>
-						<td><?php echo $nombres;?></td>	
-						<td><?php echo $apellidos;?></td>
-						<td><?php echo $telefono;?></td>	
-						<td><?php echo $correo;?></td>
-						<td><?php echo $contraseña;?></td>	
-						<td><?php echo $direccion;?></td>
-						<td><?php echo $areas_a_supervisar;?></td>	
-						<td><?php echo $estado_civil;?></td>
-						<td><?php echo $RH;?></td>
+						<td><?php echo $k_identi;?></td>
+						<td><?php echo $n_name;?></td>
+						<td><?php echo $n_lastname;?></td>
+						<td><?php echo $v_phone;?></td>	
+						<td><?php echo $n_address;?></td>
+						<td><?php echo $n_mail;?></td>
 					</tr>
 					</table>
 				</center>
@@ -133,7 +120,7 @@
 			}
 		}
 	?>
-	
+	</div>
 </center>
 	</div>
 </body>
