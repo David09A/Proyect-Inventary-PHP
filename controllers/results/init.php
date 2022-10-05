@@ -4,7 +4,6 @@
 	error_reporting(E_ERROR | E_PARSE);
 	$usuari = $_SESSION['user'];
 	$admin = $usuari['n_name'];
-	$usuariocli = $_SESSION['clie'];
 
 
 	if (!isset($usuari)) {
@@ -51,7 +50,7 @@
 	</center>
 	<center>
 		<div class="ventas">
-			<a href="ventas.php" target="_blank"><button class="generador"><i class="fas fa-file-download"></i> Ventas del Sistema</button></a>
+			<a href="../assets/pdf/ventas.php" target="_blank"><button class="generador"><i class="fas fa-file-download"></i> Ventas del Sistema</button></a>
 			<br>
 			<div class="vendedor">
 					<h2>Datos de la venta</h2>
@@ -68,7 +67,7 @@
 								<strong>¡Correcto!</strong> Venta realizada correctamente el # es: <?php 
 								$idvt = $_GET['idvent'];
 								echo $idvt; ?>
-								<a href="Factura.php?idvt=<?php echo $idvt ?>" target="_blank"><button class="generador"><i class="fas fa-file-download"></i> Ver Comprobante</button></a>
+								<a href="../assets/pdf/facturacion.php?idvt=<?php echo $idvt ?>" target="_blank"><button class="generador"><i class="fas fa-file-download"></i> Ver Comprobante</button></a>
 							</div>
 						<?php
 					}else if($_GET["status"] === "2"){
@@ -93,6 +92,12 @@
 						?>
 						<div class="alertas">
 								<strong>Error: </strong>El producto está agotado
+							</div>
+						<?php
+					}else if($_GET["status"] === "6"){
+						?>
+						<div class="alertas">
+								<strong>Error: </strong>La cantidad maxima en stock se excede
 							</div>
 						<?php
 					}else{
@@ -148,11 +153,17 @@
 			</div>
 			<div class="total">
 				<h3>Total: <?php echo $granTotal; ?></h3>
-				<form action="../peticions/terminarVenta.php" method="POST">
-					<input name="total" type="hidden" value="<?php echo $granTotal;?>">
-					<button type="submit" class="boton_tablas">Terminar venta</button>
-					<a href="../peticions/terminarVenta.php" class="boton_tablas">Cancelar venta</a>
-				</form>
+				<?php
+				if($granTotal > 0){
+					?>
+					<form action="../peticions/terminarVenta.php" method="POST">
+						<input name="total" type="hidden" value="<?php echo $granTotal;?>">
+						<button type="submit" class="boton_tablas">Terminar venta</button>
+						<a href="../peticions/cancelarVenta.php" class="boton_tablas">Cancelar venta</a>
+					</form>
+					<?php
+				}
+				?>
 			</div>
 			
 		</div>

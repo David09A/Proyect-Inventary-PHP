@@ -108,7 +108,7 @@
 		<div class="products-list">
 			<div class="header">
 			<h1>Proveedores</h1>
-			<a href="../../Pdf/reporte_proveedor.PHP" target="_blank"><button class="generador">Generar PDF</button></a>
+			<a href="../../assets/pdf/reporte_prov.php" target="_blank"><button class="generador">Generar PDF</button></a>
 			</div>			
 			<table>
 				<tr class="strong">

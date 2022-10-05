@@ -6,7 +6,7 @@ $v_cantActual = $_SESSION["carrito"][$indice]->caantidad;
 $v_cantExistente = $_SESSION["carrito"][$indice]->v_cant;
     # si al sumarle uno supera lo que existe, no se agrega
     if ($v_cantActual + 1 > $v_cantExistente) {
-        header("Location: ../results/init.php?status=5");
+        header("Location: ../results/init.php?status=6");
         exit;
     }
 $_SESSION["carrito"][$indice]->caantidad++;

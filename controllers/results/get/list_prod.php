@@ -112,7 +112,7 @@
 		<div class="products-list">
 			<div class="header">
 			<h1>Productos</h1>
-			<a href="../../Pdf/reporte_producto.PHP" target="_blank"><button class="generador">Generar PDF</button></a>
+			<a href="../../assets/pdf/reporte_producto.php" target="_blank"><button class="generador">Generar PDF</button></a>
 			</div>			
 			<table>
 				<tr class="strong">
