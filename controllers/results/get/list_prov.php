@@ -94,8 +94,8 @@
 									<td><?php echo $registro['v_phone']; ?></td>
 									<td><?php echo $registro['n_address']; ?></td>
 									<td><?php echo $registro['n_mail']; ?></td>
-									<td><a href="ACTUALIZAR/proveedors.php?prod=<?php echo $registro['k_identi']?>"><input type="button" name="Editar" value="Editar" class="boton_tablas"></a></td>
-									<td><a href="ELIMINAR/eliminarprod.php?prod=<?php echo $registro['k_identi']?>"><input type="button" name="eliminar" value="Eliminar" class="boton_tablas"></a></td>
+									<td><a href="../update/mod_prov.php?prov=<?php echo $registro['k_identi']?>"><input type="button" name="Editar" value="Editar" class="boton_tablas"></a></td>
+									<td><a href="../../peticions/delete.php?tableName=gr002det_user&id=<?php echo $registro['k_identi']?>"><input type="button" name="eliminar" value="Eliminar" class="boton_tablas"></a></td>
 					           </tr>
 					           <?php 
 					       } //fin blucle
@@ -109,7 +109,26 @@
 			<div class="header">
 			<h1>Proveedores</h1>
 			<a href="../../assets/pdf/reporte_prov.php" target="_blank"><button class="generador">Generar PDF</button></a>
-			</div>			
+			</div>
+			<?php
+			if($_GET["status"] === "1"){
+				?>
+					<div class="alertas">
+						<strong>¡Correcto!</strong> Elimino el proveedor: <?php 
+						$id = $_GET['id'];
+						echo $id; ?>
+					</div>
+				<?php
+			}elseif($_GET["status"] === "2"){
+				?>
+					<div class="alertas">
+						<strong>¡Ohhhh!</strong> No se pudo eliminar el proveedor: <?php 
+						$id = $_GET['id'];
+						echo $id; ?>
+					</div>
+				<?php
+			}
+			?>				
 			<table>
 				<tr class="strong">
 						<th>Nit.</th>
@@ -135,8 +154,8 @@
 				<td><?php echo $mostrar['v_phone']; ?></td>
 				<td><?php echo $mostrar['n_address']; ?></td>
 				<td><?php echo $mostrar['n_mail']; ?></td>
-				<td><a href="ACTUALIZAR/proveedors.php?prod=<?php echo $mostrar['k_identi']?>"><input type="button" name="Editar" value="Editar" class="boton_tablas"></a></td>
-				<td><a href="ELIMINAR/eliminarprod.php?prod=<?php echo $mostrar['k_identi']?>"><input type="button" name="eliminar" value="Eliminar" class="boton_tablas"></a></td>
+				<td><a href="../update/mod_prov.php?prov=<?php echo $mostrar['k_identi']?>"><input type="button" name="Editar" value="Editar" class="boton_tablas"></a></td>
+				<td><a href="../../peticions/delete.php?tableName=gr002det_user&id=<?php echo $mostrar['k_identi']?>"><input type="button" name="eliminar" value="Eliminar" class="boton_tablas"></a></td>
 			</tr>
 				<?php 
 				}

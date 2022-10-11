@@ -98,8 +98,8 @@
 									<td><?php echo $registro['v_cant']; ?></td>
 									<td><?php echo $registro['v_valor_prod']; ?></td>
 									<td><?php echo $registro['k_prov_prod']; ?></td>
-									<td><a href="ACTUALIZAR/productos.php?prod=<?php echo $registro['k_refprod']?>"><input type="button" name="Editar" value="Editar" class="boton_tablas"></a></td>
-									<td><a href="ELIMINAR/eliminarprod.php?prod=<?php echo $registro['k_refprod']?>"><input type="button" name="eliminar" value="Eliminar" class="boton_tablas"></a></td>
+									<td><a href="../update/mod_prod.php?prod=<?php echo $registro['k_refprod']?>"><input type="button" name="Editar" value="Editar" class="boton_tablas"></a></td>
+									<td><a href="../../peticions/delete.php?tableName=pr005m_prod&id=<?php echo $registro['k_refprod']?>"><input type="button" name="eliminar" value="Eliminar" class="boton_tablas"></a></td>
 					           </tr>
 					           <?php 
 					       } //fin blucle
@@ -113,7 +113,26 @@
 			<div class="header">
 			<h1>Productos</h1>
 			<a href="../../assets/pdf/reporte_producto.php" target="_blank"><button class="generador">Generar PDF</button></a>
-			</div>			
+			</div>
+			<?php
+			if($_GET["status"] === "1"){
+				?>
+					<div class="alertas">
+						<strong>¡Correcto!</strong> Elimino el producto: <?php 
+						$id = $_GET['id'];
+						echo $id; ?>
+					</div>
+				<?php
+			}elseif($_GET["status"] === "2"){
+				?>
+					<div class="alertas">
+						<strong>¡Ohhhh!</strong> No se pudo eliminar el producto: <?php 
+						$id = $_GET['id'];
+						echo $id; ?>
+					</div>
+				<?php
+			}
+			?>			
 			<table>
 				<tr class="strong">
 					<td>Ref</td>
@@ -126,12 +145,8 @@
 					<td colspan="2">Opciones</td>
 				</tr>
 				<?php
-				
 				$query ="SELECT k_refprod, n_name_prod, n_desc_prod, n_brand, v_cant, v_valor_prod, k_prov_prod from pr005m_prod LIMIT 15";
-
 				$consulta=mysqli_query($con,$query);
-
-
 				while ($mostrar =mysqli_fetch_array($consulta)) {
 					
 				?>
@@ -143,8 +158,8 @@
 				<td><?php echo $mostrar['v_cant']; ?></td>
 				<td><?php echo $mostrar['v_valor_prod']; ?></td>
 				<td><?php echo $mostrar['k_prov_prod']; ?></td>
-				<td><a href="ACTUALIZAR/productos.php?prod=<?php echo $mostrar['k_refprod']?>"><input type="button" name="Editar" value="Editar" class="boton_tablas"></a></td>
-				<td><a href="ELIMINAR/eliminarprod.php?prod=<?php echo $mostrar['k_refprod']?>"><input type="button" name="eliminar" value="Eliminar" class="boton_tablas"></a></td>
+				<td><a href="../update/mod_prod.php?prod=<?php echo $mostrar['k_refprod']?>"><input type="button" name="Editar" value="Editar" class="boton_tablas"></a></td>
+				<td><a href="../../peticions/delete.php?tableName=pr005m_prod&id=<?php echo $mostrar['k_refprod']?>"><input type="button" name="eliminar" value="Eliminar" class="boton_tablas"></a></td>
 			</tr>
 				<?php 
 				}
