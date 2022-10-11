@@ -1,0 +1,374 @@
+* {
+	padding: 0;
+	margin: 0;
+	font-family: Sketchnote;
+	text-align: center;
+}
+
+body {
+	background-image: url(imgs/fondo.jpg);
+	width: 100%;
+	height:100%;
+	background-size: cover;
+	color:rgb(199, 194, 194);
+}
+
+.contain1{
+	max-width: 800px;
+	width: calc(100% - 40px);
+	padding: 20px;
+	margin: 20px auto;
+	border-radius: 5px;
+
+}
+/*Menu*/
+
+/*Lista desordenada*/
+#menu ul{
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	display: inline-flex;
+}
+/*Items menu*/
+#menu ul li{
+	background-color: none;
+}
+/*enlaces menu*/
+#menu ul a {
+ display:block;
+ color:#fff;
+ text-decoration:none;
+ font-size:15px;
+ padding:10px;
+ text-transform:uppercase;
+ letter-spacing:1px;
+ margin: 4px;
+
+}
+
+/* items del menu */
+
+#menu ul li {
+ position:relative;
+ float:left;
+ margin:0;
+ padding:0;
+}
+
+/* efecto al pasar el ratón por los items del menu */
+
+#menu ul li:hover {
+	background-color: #10354e;
+}
+/* menu desplegable */
+
+#menu ul ul {
+ display:none;
+ position:absolute;
+ top:100%;
+ left:0;
+ background-color: #10354e;
+ padding:0;
+}
+
+/* items del menu desplegable */
+
+#menu ul ul li {
+ float:none;
+ width:auto;
+}
+
+/* enlaces de los items del menu desplegable */
+
+#menu ul ul a {
+	font-size: 12px;
+ line-height:90%;
+ padding:8px;
+}
+
+/* items del menu desplegable al pasar el ratón */
+
+#menu ul li:hover > ul {
+ display:block;
+ background-color: black;
+}
+.submenu{
+	background-color: black;
+}
+
+
+/* Buscador */
+.buscador{
+	display: flex;
+	width: 100%;
+	border-radius: 15px;
+}
+
+.busqueda{
+	padding: 10px;
+	font-size: 15px;
+	width: calc(100% - 20px);
+	outline: none;
+}
+.botonbusq{
+	background-color: #408c99;
+	color:#ffffff;
+	font-size:15px;
+	padding:10px;
+	text-decoration:none;
+}
+/* header */
+.header{
+	width: 100%;
+	margin: 0 auto;	
+}
+.header h1{
+	margin: 0 50px;
+}
+/*Generador */
+
+.generador{
+	float: right;
+	border: 1;
+	background: none;
+	font-size: 18px;
+	color: #fff;
+	border-radius: 15px;
+	padding: 5px 20px;
+	cursor: pointer;
+}
+.generador:hover{
+	background-color: #10354e;
+	color: #FFF;
+}
+
+/*Boton cerrar sesion o atras */
+
+.botonprin {
+	border-radius:9px;
+	border:2px solid #29668f;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:15px 11px;
+	text-decoration:none;
+	float: left;
+	margin-top: 30px;
+	margin-left: 40px;
+}
+.botonprin:hover {
+	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+	background-color:#408c99;
+}
+.botonprin:active {
+	position:relative;
+	top:1px;
+}
+
+/* Buscador */
+.buscador{
+	display: flex;
+	border-radius: 15px;
+}
+
+.busqueda{
+	padding: 10px;
+	font-size: 15px;
+	width: calc(100% - 20px);
+	outline: none;
+}
+
+.botonbusq{
+	background-color: #408c99;
+	color:#ffffff;
+	font-size:15px;
+	padding:10px;
+	text-decoration:none;
+}
+/*   Tablas!!*/
+.boton_tablas {
+	box-shadow:inset 0px 39px 0px -24px #e67a73;
+	background-color:#e4685d;
+	border-radius:4px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:4px 6px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+.boton_tablas:hover {
+	background-color:#eb675e;
+}
+.boton_tablas:active {
+	position:relative;
+	top:1px;
+}
+
+.products-list{
+	margin-top: 5px;
+}
+
+
+/* ----------------------------------------------------   */
+/*Crear Producto*/
+.crear_prod{
+	max-width: 600px;
+	margin: 0 auto;
+}
+.crear_prod h2{
+	font-size: 2em;
+	margin: 3px;
+}
+.crear_prod form h3{
+	font-size: 1em;
+}
+
+td a button .boton {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#768d87;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+button .boton:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+button .boton:active {
+	position:relative;
+	top:1px;
+}
+table {
+   border-collapse: separate;
+   border-spacing: 5px;
+   width: 100%;
+}
+/*Crear */
+.entrada{
+	border: 0;
+	background: none;
+	display: block;
+	margin: 10px auto;
+	text-align: center;
+	border: 2px solid #3498db;
+	padding: 14px 10px;
+	width: calc(70% - 40px);
+	outline: none;
+	color: white;
+	border-radius: 24px;
+	transition: 0.25s;
+}
+::placeholder { color: white; }
+
+.entrada:focus{
+	background-color: none;
+	border-color: #33FFCA;
+	width: calc(80% - 40px);
+}
+.seleccion{
+	border: 0;
+	background: none;
+	display: block;
+	margin: 10px auto;
+	text-align: center;
+	border: 2px solid #3498db;
+	padding: 14px 10px;
+	width: calc(70% - 40px);
+	color: white;
+	outline: none;
+	border-radius: 24px;
+	transition: 0.25s;
+}
+
+.seleccion:focus{
+	background-color: #10354e;
+	border-color: #33FFCA;
+	width: calc(80% - 40px);
+}
+#boton {
+	box-shadow: 0px 10px 14px -7px #899599;
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	background-color:#ededed;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-size:18px;
+	font-weight:bold;
+	padding:5px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+#boton:hover {
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	background-color:#bab1ba;
+}
+.tabla{
+	border: 2px solid #3498db;
+	background-color: none;
+}
+th, td{
+	border: 1px solid #3498db;
+	background-color: none;
+	text-align: center;
+	color: white;
+	padding: 5px;
+	border-spacing: 0;
+}
+.tabla td{
+	font-size: 12px;
+}
+/* Generar Ventas */
+#existente{
+	display: none;
+}
+#nuevo{
+	display: none;
+}
+.formcli{
+	display: inline-flex;
+}
+.cliinp{
+	border: 0;
+	background: none;
+	display: flex;
+	margin: 10px auto;
+	text-align: center;
+	border: 2px solid #3498db;
+	padding: 14px 10px;
+	width: calc(30% - 40px);
+	outline: none;
+	color: white;
+	border-radius: 24px;
+	transition: 0.25s;
+}
+.cliinp:focus{
+	background-color: none;
+	border-color: #33FFCA;
+	width: calc(40% - 40px);
+}
+.alertas{
+	color: #e4685d;
+}
+.clienteh2{
+	color: #e4685d;
+}
+.total h3{
+	font-size: 2em;
+	margin: 10px;
+}
