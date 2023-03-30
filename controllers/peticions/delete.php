@@ -22,6 +22,6 @@ if ($tableName == "pr005m_prod") {
         header("location: ./../results/get/list_prov.php?status=2&id=$id");
     }
 }
-
+// otro
 
 ?>
